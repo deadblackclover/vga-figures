@@ -15,12 +15,10 @@ impl<T: GraphicsWriter<Color16>> Figures<T> {
     }
 
     /// Draw rectangle
-    pub fn rectangle(&self, x: isize, y: isize, width: isize, height: isize, color: Color16) {
-        self.mode.draw_line((x, y), (x + width, y), color);
-        self.mode.draw_line((x, y), (x, y + width), color);
-        self.mode
-            .draw_line((x + width, y + height), (x, y + height), color);
-        self.mode
-            .draw_line((x + width, y + height), (x + width, y), color);
+    pub fn rectangle(&self, x1: isize, y1: isize, x2: isize, y2: isize, color: Color16) {
+        self.mode.draw_line((x1, y1), (x1, y2), color);
+        self.mode.draw_line((x1, y1), (x2, y1), color);
+        self.mode.draw_line((x2, y2), (x1, y2), color);
+        self.mode.draw_line((x2, y2), (x2, y1), color);
     }
 }

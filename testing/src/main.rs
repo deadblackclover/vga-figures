@@ -18,7 +18,7 @@ pub extern "C" fn _start() -> ! {
     mode.clear_screen(Color16::Black);
 
     let figures = Figures::new(mode);
-    figures.rectangle(10, 10, 10, 10, Color16::White);
+    figures.rectangle(10, 10, 50, 50, Color16::White);
 
     #[cfg(test)]
     test_main();
