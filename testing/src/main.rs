@@ -19,6 +19,7 @@ pub extern "C" fn _start() -> ! {
 
     let figures = Figures::new(mode);
     figures.rectangle(10, 10, 50, 50, Color16::White);
+    figures.circle(100, 100, 30, Color16::White);
 
     #[cfg(test)]
     test_main();
