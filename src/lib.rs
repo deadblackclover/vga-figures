@@ -19,6 +19,11 @@ impl<T: GraphicsWriter<Color16>> Figures2D<T> {
         self.rectangle(x, y, x, y, color);
     }
 
+    /// Draw pixel
+    pub fn line(&self, x1: isize, y1: isize, x2: isize, y2: isize, color: Color16) {
+        self.mode.draw_line((x1, y1), (x2, y2), color);
+    }
+
     /// Draw rectangle
     pub fn rectangle(&self, x1: isize, y1: isize, x2: isize, y2: isize, color: Color16) {
         self.mode.draw_line((x1, y1), (x1, y2), color);
