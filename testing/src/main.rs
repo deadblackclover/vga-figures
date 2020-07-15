@@ -9,7 +9,7 @@ use testing::serial_print;
 
 use vga::colors::Color16;
 use vga::writers::{Graphics640x480x16, GraphicsWriter};
-use vga_figures::Figures;
+use vga_figures::Figures2D;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
@@ -17,7 +17,7 @@ pub extern "C" fn _start() -> ! {
     mode.set_mode();
     mode.clear_screen(Color16::Black);
 
-    let figures = Figures::new(mode);
+    let figures = Figures2D::new(mode);
     figures.rectangle(10, 10, 50, 50, Color16::White);
     figures.circle(100, 100, 30, Color16::White);
 

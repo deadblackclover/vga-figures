@@ -4,14 +4,14 @@
 use vga::colors::Color16;
 use vga::writers::GraphicsWriter;
 
-pub struct Figures<T> {
+pub struct Figures2D<T> {
     mode: T,
 }
 
-impl<T: GraphicsWriter<Color16>> Figures<T> {
-    /// Creates a new `Figures`.
-    pub const fn new(mode: T) -> Figures<T> {
-        Figures { mode }
+impl<T: GraphicsWriter<Color16>> Figures2D<T> {
+    /// Creates a new `Figures2D`.
+    pub const fn new(mode: T) -> Figures2D<T> {
+        Figures2D { mode }
     }
 
     /// Draw pixel
