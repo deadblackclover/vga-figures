@@ -9,7 +9,7 @@ use testing::serial_print;
 
 use vga::colors::Color16;
 use vga::writers::{Graphics640x480x16, GraphicsWriter};
-use vga_figures::Figures2D;
+use vga_figures::figures2d::Figures2D;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
