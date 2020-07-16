@@ -1,4 +1,8 @@
 # vga-figures
+
+![crates.io](https://img.shields.io/crates/v/vga-figures.svg)
+![docs.rs](https://docs.rs/vga-figures/badge.svg)
+
 :art: Library for drawing various shapes
 
 ## Figures2D
