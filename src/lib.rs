@@ -3,4 +3,5 @@
 #![no_std]
 #![feature(const_fn)]
 
+/// Drawing 2D shapes
 pub mod figures2d;
