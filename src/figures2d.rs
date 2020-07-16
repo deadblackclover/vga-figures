@@ -83,6 +83,7 @@ impl<T: GraphicsWriter<Color16>> Figures2D<T> {
     /// Draw text
     pub fn text(&self, x: usize, y: usize, s: &str, color: Color16) {
         for (i, ch) in s.chars().enumerate() {
+            // i * 8 - so that the text does not stick together
             self.mode.draw_character(x + i * 8, y, ch, color);
         }
     }
