@@ -19,7 +19,7 @@ impl<T: GraphicsWriter<Color16>> Figures2D<T> {
         self.rectangle(x, y, x, y, color);
     }
 
-    /// Draw pixel
+    /// Draw line
     pub fn line(&self, x1: isize, y1: isize, x2: isize, y2: isize, color: Color16) {
         self.mode.draw_line((x1, y1), (x2, y2), color);
     }
@@ -65,6 +65,28 @@ impl<T: GraphicsWriter<Color16>> Figures2D<T> {
             self.pixel(x0 - y, y0 + x, color);
             self.pixel(x0 + y, y0 - x, color);
             self.pixel(x0 - y, y0 - x, color);
+        }
+    }
+
+    /// Draw polygon
+    pub fn polygon(&self, arr: &[isize], color: Color16) {
+        let len = arr.len();
+        if len % 2 == 0 && len >= 2 {
+            let mut i = 0;
+            while i <= len - 4 {
+                self.mode
+                    .draw_line((arr[i], arr[i + 1]), (arr[i + 2], arr[i + 3]), color);
+                i += 2;
+            }
+            self.mode
+                .draw_line((arr[0], arr[1]), (arr[len - 2], arr[len - 1]), color);
+        }
+    }
+
+    /// Draw text
+    pub fn text(&self, x: usize, y: usize, s: &str, color: Color16) {
+        for (i, ch) in s.chars().enumerate() {
+            self.mode.draw_character(x + i * 8, y, ch, color);
         }
     }
 }

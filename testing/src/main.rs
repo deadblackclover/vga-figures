@@ -22,6 +22,11 @@ pub extern "C" fn _start() -> ! {
     figures.rectangle(25, 10, 75, 60, Color16::White);
     figures.circle(115, 35, 25, Color16::White);
 
+    let arr = [150, 100, 200, 120, 240, 180, 210, 200, 150, 150, 100, 200];
+    figures.polygon(&arr, Color16::White);
+
+    figures.text(10, 80, "Test text", Color16::White);
+
     #[cfg(test)]
     test_main();
 
