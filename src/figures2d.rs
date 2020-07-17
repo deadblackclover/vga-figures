@@ -29,39 +29,72 @@ impl<T: GraphicsWriter<Color16>> Figures2D<T> {
         self.mode.draw_line((x2, y2), (x2, y1), color);
     }
 
-    /// Draw circle
-    pub fn circle(&self, x0: isize, y0: isize, r: isize, color: Color16) {
-        let mut f = 1 - r;
-        let mut dd_f_x = 1;
-        let mut dd_f_y = -2 * r;
-        let mut x = 0;
-        let mut y = r;
+    /// Draw ellipse
+    pub fn ellipse(&self, x: isize, y: isize, a: isize, b: isize, color: Color16) {
+        let asq = a * a;
+        let bsq = b * b;
 
-        self.pixel(x0, y0 + r, color);
-        self.pixel(x0, y0 - r, color);
-        self.pixel(x0 + r, y0, color);
-        self.pixel(x0 - r, y0, color);
+        self.pixel(x, y + b, color);
+        self.pixel(x, y - b, color);
 
-        while x < y {
-            if f >= 0 {
-                y -= 1;
-                dd_f_y += 2;
-                f += dd_f_y;
+        let mut wx = 0;
+        let mut wy = b;
+        let mut xa = 0;
+        let mut ya = asq * 2 * b;
+        let mut thresh = asq / 4 - asq * b;
+
+        loop {
+            thresh += xa + bsq;
+
+            if thresh >= 0 {
+                ya -= asq * 2;
+                thresh -= ya;
+                wy -= 1;
             }
 
-            x += 1;
-            dd_f_x += 2;
-            f += dd_f_x;
+            xa += bsq * 2;
+            wx += 1;
 
-            self.pixel(x0 + x, y0 + y, color);
-            self.pixel(x0 - x, y0 + y, color);
-            self.pixel(x0 + x, y0 - y, color);
-            self.pixel(x0 - x, y0 - y, color);
+            if xa >= ya {
+                break;
+            }
 
-            self.pixel(x0 + y, y0 + x, color);
-            self.pixel(x0 - y, y0 + x, color);
-            self.pixel(x0 + y, y0 - x, color);
-            self.pixel(x0 - y, y0 - x, color);
+            self.pixel(x + wx, y - wy, color);
+            self.pixel(x - wx, y - wy, color);
+            self.pixel(x + wx, y + wy, color);
+            self.pixel(x - wx, y + wy, color);
+        }
+
+        self.pixel(x + a, y, color);
+        self.pixel(x - a, y, color);
+
+        wx = a;
+        wy = 0;
+        xa = bsq * 2 * a;
+
+        ya = 0;
+        thresh = bsq / 4 - bsq * a;
+
+        loop {
+            thresh += ya + asq;
+
+            if thresh >= 0 {
+                xa -= bsq * 2;
+                thresh = thresh - xa;
+                wx -= 1;
+            }
+
+            ya += asq * 2;
+            wy += 1;
+
+            if ya > xa {
+                break;
+            }
+
+            self.pixel(x + wx, y - wy, color);
+            self.pixel(x - wx, y - wy, color);
+            self.pixel(x + wx, y + wy, color);
+            self.pixel(x - wx, y + wy, color);
         }
     }
 
