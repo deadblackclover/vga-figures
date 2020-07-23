@@ -1,7 +1,7 @@
 use vga::colors::Color16;
 use vga::writers::GraphicsWriter;
 
-/// 2D shapes
+/// Struct for storage mode vga
 pub struct Figures2D<T> {
     mode: T,
 }

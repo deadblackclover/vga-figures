@@ -1,6 +1,6 @@
 [package]
 name = "vga-figures"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["DEADBLACKCLOVER <deadblackclover@protonmail.com>"]
 description = "Library for drawing various shapes"
 edition = "2018"
