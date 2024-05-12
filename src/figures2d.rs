@@ -1,12 +1,12 @@
 use vga::colors::Color16;
-use vga::writers::GraphicsWriter;
+use vga::writers::PrimitiveDrawing;
 
 /// Struct for storage mode vga
 pub struct Figures2D<T> {
     mode: T,
 }
 
-impl<T: GraphicsWriter<Color16>> Figures2D<T> {
+impl<T: PrimitiveDrawing<Color16>> Figures2D<T> {
     /// Creates a new `Figures2D`.
     pub const fn new(mode: T) -> Figures2D<T> {
         Figures2D { mode }

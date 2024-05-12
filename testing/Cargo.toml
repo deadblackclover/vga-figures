@@ -12,9 +12,9 @@ harness = false
 bootloader = "0.9.3"
 spin = "0.5.2"
 uart_16550 = "0.2.0"
-vga = "0.2.4"
+vga = "0.2.9"
 vga-figures = { path = "../" }
-x86_64 = "0.11.0"
+x86_64 = "0.14.2"
 
 [dependencies.lazy_static]
 version = "1.0"
