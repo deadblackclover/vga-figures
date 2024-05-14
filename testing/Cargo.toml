@@ -4,10 +4,6 @@ version = "0.1.0"
 authors = ["DEADBLACKCLOVER <deadblackclover@protonmail.com>"]
 edition = "2018"
 
-[[test]]
-name = "should_panic"
-harness = false
-
 [dependencies]
 bootloader = "0.9"
 vga = "0.2.9"
