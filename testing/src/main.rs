@@ -1,11 +1,6 @@
 #![no_std]
 #![no_main]
-#![feature(custom_test_frameworks)]
-#![test_runner(testing::test_runner)]
-#![reexport_test_harness_main = "test_main"]
-
 use core::panic::PanicInfo;
-use testing::serial_print;
 
 use vga::colors::Color16;
 use vga::writers::{Graphics640x480x16, GraphicsWriter};
@@ -34,20 +29,7 @@ pub extern "C" fn _start() -> ! {
 }
 
 /// This function is called on panic.
-#[cfg(not(test))]
 #[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    serial_print!("{}", info);
+fn panic(_info: &PanicInfo) -> ! {
     loop {}
-}
-
-#[cfg(test)]
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    testing::test_panic_handler(info)
-}
-
-#[test_case]
-fn trivial_assertion() {
-    assert_eq!(1, 1);
 }
